@@ -60,4 +60,31 @@ class RegularExpressionsTests {
 		assertFalse("301".matches(regex));
 	}
 	
+	@Test
+	void ipOctetTest() {
+		String regex = RegularExpressions.ipOctet();
+		
+		assertTrue("0".matches(regex));
+		assertTrue("00".matches(regex));
+		assertTrue("000".matches(regex));
+		assertTrue("100".matches(regex));
+		assertTrue("10".matches(regex));
+		assertTrue("19".matches(regex));
+		assertTrue("199".matches(regex));
+		assertTrue("099".matches(regex));
+		assertTrue("255".matches(regex));
+		assertTrue("250".matches(regex));
+		assertTrue("249".matches(regex));
+		
+		assertFalse("-0".matches(regex));
+		assertFalse("00 ".matches(regex));
+		assertFalse("0000".matches(regex));
+		assertFalse("10?".matches(regex));
+		assertFalse("1900".matches(regex));
+		assertFalse("299".matches(regex));
+		assertFalse("00a".matches(regex));
+		assertFalse("256".matches(regex));
+		assertFalse("260".matches(regex));
+		assertFalse("300".matches(regex));
+	}
 }
