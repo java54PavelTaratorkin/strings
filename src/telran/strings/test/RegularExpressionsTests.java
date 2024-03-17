@@ -87,4 +87,31 @@ class RegularExpressionsTests {
 		assertFalse("260".matches(regex));
 		assertFalse("300".matches(regex));
 	}
+	
+	@Test
+	void mobileIsraelPhoneTest() {
+		String regex = RegularExpressions.mobileIsraelPhone();
+		
+		assertTrue("+972535591452".matches(regex));
+		assertTrue("+972-535591452".matches(regex));
+		assertTrue("+972-53-5591452".matches(regex));
+		assertTrue("+972-53-559-1452".matches(regex));
+		
+		assertTrue("0535591452".matches(regex));
+		assertTrue("053-5591452".matches(regex));
+		assertTrue("053-559-1452".matches(regex));
+		
+		assertFalse("972550075599".matches(regex));
+		assertFalse("+972650075599".matches(regex));
+		assertFalse("-972650075599".matches(regex));
+		assertFalse("+9725500755998".matches(regex));
+		assertFalse("+97255007559".matches(regex));
+		assertFalse("+972a50075599".matches(regex));
+		
+		assertFalse("+0550075599".matches(regex));
+		assertFalse("0650075599".matches(regex));
+		assertFalse("05500755998".matches(regex));
+		assertFalse("055007559".matches(regex));
+		assertFalse("a50075599".matches(regex));
+	}
 }

@@ -20,4 +20,16 @@ public class RegularExpressions {
 		
 		return regex;
 	}
+	
+	public static String mobileIsraelPhone() {
+		//string contains possible Israel mobile phone number
+		//+972-(maybe without '-' but no space)<prefix two digit beginning from 5>-<7 digits of number>
+		//<prefix three digits: first - 0, second 5, third - any>-(maybe without '-' but no space)<7 digits of number>
+		//E.g. 054-733-44-58, 054-73344-58, 054-7334458, 054733-44-58, 0547334458
+		//E.g. +972547334458, +972-547334458, +972-54-733-4458
+		String regex = "[+]972[-]?5\\d[-]?\\d{3}[-]?\\d{4}"
+				+ "|05\\d[-]?\\d{3}[-]?\\d{4}";
+		
+		return regex;
+	}
 }
