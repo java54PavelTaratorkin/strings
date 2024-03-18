@@ -3,6 +3,7 @@ package telran.strings.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import telran.strings.RegularExpressions;
 
@@ -75,6 +76,7 @@ class RegularExpressionsTests {
 		assertTrue("255".matches(regex));
 		assertTrue("250".matches(regex));
 		assertTrue("249".matches(regex));
+		assertTrue("7".matches(regex));
 		
 		assertFalse("-0".matches(regex));
 		assertFalse("00 ".matches(regex));
