@@ -7,20 +7,29 @@ public class Validations {
 		//consider introducing counter that increased for '(' and decreased for ')'
 		//if during passing over the string expression counter < 0 returning false
 		//if after passing whole string counter != 0 returning false
+		
+		/*
+		 * countPairness >=0 && i < expression.length() - always index check 
+		 * must be first. Though in this case no matter, but it should be rule 
+		 * of thumb. You do the cycle regardless of expression matching - that 
+		 * doesn't make a sense. countPairness == 0 ? true : false; is the same as 
+		 * countPairness == 0 (no need of the conditional operator)
+		 */
 		String regex = RegularExpressions.arithmeticExpression();
 		boolean isRegex = expression.matches(regex);
 
-		int countPairness = 0, i = 0;
-		while (countPairness >=0 && i < expression.length()) {
-			if (expression.charAt(i) == '(') {
-				countPairness++;
-			} else if (expression.charAt(i) == ')')
-				countPairness--;
-			i++;
-		} ;
+		int countPairness = 0;
+		if (isRegex) {
+			int i = 0;
+			while (countPairness >=0 && i < expression.length()) {
+				if (expression.charAt(i) == '(') {
+					countPairness++;
+				} else if (expression.charAt(i) == ')')
+					countPairness--;
+				i++;
+			};
+		}
 		
-		boolean noPairness = countPairness == 0 ? true : false;
-		
-		return isRegex && noPairness;
+		return isRegex && countPairness == 0;
 	}
 }

@@ -20,6 +20,7 @@ class ValidationsTest {
 		assertTrue(Validations.isArithmeticExpression("(20.5 + abc12 / 3)*2"));
 		assertTrue(Validations.isArithmeticExpression("(abc)"));
 		assertTrue(Validations.isArithmeticExpression("(___)"));
+		assertTrue(Validations.isArithmeticExpression("2 + 5"));
 		
 		assertFalse(Validations.isArithmeticExpression("(20.5 + abc))*2"));
 		assertFalse(Validations.isArithmeticExpression(")(20.5 + abc))*2"));
