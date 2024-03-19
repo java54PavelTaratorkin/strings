@@ -21,7 +21,7 @@ public class Validations {
 		int countPairness = 0;
 		if (isRegex) {
 			int i = 0;
-			while (countPairness >=0 && i < expression.length()) {
+			while (i < expression.length() && countPairness >=0) {
 				if (expression.charAt(i) == '(') {
 					countPairness++;
 				} else if (expression.charAt(i) == ')')
