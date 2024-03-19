@@ -27,8 +27,6 @@ public class RegularExpressions {
 		//<prefix three digits: first - 0, second 5, third - any>-(maybe without '-' but no space)<7 digits of number>
 		//E.g. 054-733-44-58, 054-73344-58, 054-7334458, 054733-44-58, 0547334458
 		//E.g. +972547334458, +972-547334458, +972-54-733-4458
-//		String regex = "(\\+972-?|0)5\\d-?\\d{3}-?\\d{2}-?\\d{2}";
-		
 		String regex = "(\\+972-?|0)5\\d(\\d{7}|-\\d{7}|-\\d{3}(-\\d{4}|-\\d{2}-\\d{2}))";
 	
 		return regex;
@@ -59,7 +57,6 @@ public class RegularExpressions {
 	}
 	
 	public static String arithmeticExpression() {
-		//TODO
 		//operand - any number or Java variable name
 		//operation - the same as for simpleArithmeticExpression
 		//brackets '(' ')' are allowed
