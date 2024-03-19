@@ -98,11 +98,14 @@ class RegularExpressionsTests {
 		assertTrue("+972-535591452".matches(regex));
 		assertTrue("+972-53-5591452".matches(regex));
 		assertTrue("+972-53-559-1452".matches(regex));
+		assertTrue("+972-53-559-14-52".matches(regex));
 		
 		assertTrue("0535591452".matches(regex));
 		assertTrue("053-5591452".matches(regex));
 		assertTrue("053-559-1452".matches(regex));
+		assertTrue("053-559-14-52".matches(regex));
 		
+		assertFalse("+972-53559-14-52".matches(regex));
 		assertFalse("972550075599".matches(regex));
 		assertFalse("+972650075599".matches(regex));
 		assertFalse("-972650075599".matches(regex));
@@ -110,6 +113,7 @@ class RegularExpressionsTests {
 		assertFalse("+97255007559".matches(regex));
 		assertFalse("+972a50075599".matches(regex));
 		
+		assertFalse("053-55914-52".matches(regex));
 		assertFalse("+0550075599".matches(regex));
 		assertFalse("0650075599".matches(regex));
 		assertFalse("05500755998".matches(regex));
@@ -153,6 +157,10 @@ class RegularExpressionsTests {
 	void arithmeticExpressionTest() {
 		String regex = RegularExpressions.arithmeticExpression();
 		assertTrue("(20.5 + abc)*2".matches(regex));
+		assertTrue("(20 + abc)*2".matches(regex));
+		assertTrue("( 20.5 + abc / 3)*2 +(2*5)".matches(regex));
+		assertTrue(" (20.5 + abc)*2".matches(regex));
+		assertTrue(" ( 20.5 + abc   )*2".matches(regex));
 		assertTrue("(20.5 + abc))*2".matches(regex));
 		assertTrue("(20.5 + abc / 3)*(2".matches(regex));
 		assertTrue("(20.5 + abc$ / 3)*(2".matches(regex));
@@ -162,7 +170,7 @@ class RegularExpressionsTests {
 		
 		assertFalse("2 + _".matches(regex));
 		assertFalse("2 + a12 * ".matches(regex));
-		assertFalse("2 + )a12".matches(regex)); //не может быть закр скобки перед операдном. парности не проверяются
+		assertFalse("2 + )a12".matches(regex));
 		assertFalse("(2 + )a12 *".matches(regex));
 	}
 }
