@@ -17,7 +17,7 @@ public class RegularExpressions {
 		//contains 1 - 3 symbols presenting number from 0 - 255; 
 		//leading zeros are allowed
 //		String regex = "[0-1]\\d{0,2}|2[0-4]\\d|25[0-5]";
-		String regex = "[01]?\\d{1,2}\\d|2([0-4]\\d|5[0-5])";
+		String regex = "([01]?\\d{1,2}|2([0-4]\\d|5[0-5]))";
 		
 		return regex;
 	}
@@ -34,5 +34,34 @@ public class RegularExpressions {
 //		String regex = "(\\+972-?|0)5\\d-?(\\d{d3}-\\d{2}-|\\d{2}-?\\d{3}-?)\\d{2}";
 		
 		return regex;
+	}
+	
+	public static String ipV4Address() {
+		String ipOctetExpr = ipOctet();
+		return String.format("%1$s(\\.%1$s){3}", ipOctetExpr);
+	}
+	
+	public static String simpleArithmeticExpression() {
+		//TODO
+		//operations only binary +, - ,* ,/
+		//operands only integer numbers
+		//no brackets
+		String operand = integerNumberExp();
+		String operation = operationExp();
+		
+		return String.format("%1$s(%2$s%1$s)*", operand, operation);
+	}
+	
+	private static String integerNumberExp() {
+		return "(\\s*\\d+\\s*)";
+	}
+	
+	private static String operationExp() {
+		return "[-+*/]";
+	}
+	
+	public static String arithmeticExpression() {
+		//TODO
+		return null;
 	}
 }

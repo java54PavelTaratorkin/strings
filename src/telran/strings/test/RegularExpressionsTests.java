@@ -116,4 +116,53 @@ class RegularExpressionsTests {
 		assertFalse("055007559".matches(regex));
 		assertFalse("a50075599".matches(regex));
 	}
+	
+	@Test
+	@DisplayName("test for IP v4 address regualr expression")
+	void ipV4AddressTest() {
+		String ipV4Regex = RegularExpressions.ipV4Address();
+		
+		assertTrue("1.2.3.4".matches(ipV4Regex));
+		
+		assertFalse("1.2.3".matches(ipV4Regex));
+		assertFalse("1 2.3.4".matches(ipV4Regex));
+		assertFalse("1. 2.3.4".matches(ipV4Regex));
+		assertFalse("1.2.3.4.5".matches(ipV4Regex));
+		assertFalse("1.2.3&4".matches(ipV4Regex));
+	}
+	
+	@Test
+	@DisplayName("test of simple arithmetic expression")
+	void simpleArithmeticExpressionTest() {
+		String regex = RegularExpressions.simpleArithmeticExpression();
+		
+		assertTrue("20".matches(regex));
+		assertTrue(" 20 +3 / 2 *100".matches(regex));
+		assertTrue("10000-1".matches(regex));
+		assertTrue("10000-1 ".matches(regex));
+		
+		assertFalse("-20".matches(regex));
+		assertFalse("20 ** 3".matches(regex));
+		assertFalse(" 20 +3 / 2 *100 +".matches(regex));
+		assertFalse(" 20 +3 //2 *100 +".matches(regex));
+	}
+	
+	@Test
+	@DisplayName("test arithmetic expressions with any "
+			+ "numbers or variable names and brackets")
+	void arithmeticExpressionTest() {
+		String regex = RegularExpressions.arithmeticExpression();
+		assertTrue("(20.5 + abc)*2".matches(regex));
+		assertTrue("(20.5 + abc))*2".matches(regex));
+		assertTrue("(20.5 + abc / 3)*(2".matches(regex));
+		assertTrue("(20.5 + abc$ / 3)*(2".matches(regex));
+		assertTrue("(20.5 + abc12 / 3)*(2".matches(regex));
+		assertTrue("(abc)".matches(regex));
+		assertTrue("(___)".matches(regex));
+		
+		assertFalse("2 + _".matches(regex));
+		assertFalse("2 + a12 * ".matches(regex));
+		assertFalse("2 + )a12".matches(regex)); //не может быть закр скобки перед операдном. парности не проверяются
+		assertFalse("(2 + )a12 *".matches(regex));
+	}
 }
