@@ -68,7 +68,13 @@ public class RegularExpressions {
 	
 	private static String anyNumberExp() {
 		String javaVar = javaVariable();
-		return "(\\s*\\(*\\s*(" + javaVar + "|"
-				+ "\\d+(|\\.\\d+))\\s*\\)*\\s*)";
+		String numberExp = anyNumber();
+//		return "(\\s*\\(*\\s*(" + javaVar + "|"
+//				+ "\\d+(|\\.\\d+))\\s*\\)*\\s*)";
+		return String.format("[\\s(]*(%s|%s)[\\s)]*", javaVar, numberExp);
+	}
+	
+	private static String anyNumber () {
+		return "(\\d*\\.?\\d+|d+\\.)";
 	}
 }

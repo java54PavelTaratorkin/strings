@@ -20,11 +20,12 @@ public class Validations {
 
 		int countPairness = 0;
 		if (isRegex) {
-			int i = 0;
-			while (i < expression.length() && countPairness >=0) {
-				if (expression.charAt(i) == '(') {
+			int i = 0, expLength = expression.length();	
+			char[] characters = expression.toCharArray();
+			while (i < expLength && countPairness >=0) {
+				if (characters[i] == '(') {
 					countPairness++;
-				} else if (expression.charAt(i) == ')')
+				} else if (characters[i] == ')')
 					countPairness--;
 				i++;
 			};
